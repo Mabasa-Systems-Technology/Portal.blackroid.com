@@ -47,7 +47,7 @@ does not implement those features.
 
 ## Run locally
 
-Requirements: Node.js 20.9 or later and npm. Internet access is needed for npm
+Requirements: Node.js 22.x and npm. Internet access is needed for npm
 dependencies and Google fonts during a production build.
 
 1. Copy the entire contents of this folder into your new project folder.
@@ -115,11 +115,29 @@ Replace the remote URL with your repository's actual URL. Do not copy
 
 ## Deploy
 
-Import the new GitHub repository into a Next.js-compatible host such as Vercel,
-add the desired public environment variables, and deploy. The page carries a
+Import `Mabasa-Systems-Technology/Portal.blackroid.com` into Vercel using:
+
+- **Production branch:** `main`
+- **Root Directory:** the repository root (leave empty)
+- **Framework Preset:** Next.js
+- **Node.js version:** 22.x
+- **Install Command:** `npm ci`
+- **Build Command:** `npm run build`
+- **Output Directory:** `.next` (the Next.js default)
+
+The committed `vercel.json` sets the framework and build commands. Do not use
+`npm start` as the build command or select `public` or `out` as the output
+directory. Vercel serves the Next.js build directly.
+
+Environment variables in `.env.example` are optional for the sample workspace;
+no database, SMTP, or authentication credentials are required to render it.
+Set any desired public values in Vercel before building. After changing project
+settings, redeploy the latest `main` commit with the build cache disabled.
+Verify that both `/` and `/portfolio` load and that the four workspace tabs work.
+
+The page carries a
 `noindex` instruction, but this is not access control; a deployed URL is still
 public unless your host enforces access restrictions.
 
-The original Next.js dependency reported a known security vulnerability during
-verification. Upgrade Next.js to a fixed version and re-test the application
-before deploying it publicly.
+Before deploying dependency updates, run `npm ci`, `npm run lint`,
+`npm run typecheck`, and `npm run build`.
