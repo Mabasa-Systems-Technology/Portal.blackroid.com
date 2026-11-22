@@ -7,7 +7,7 @@ import { adminClients, adminWork, portalEngagements } from "@/lib/portal";
 import { PortalShell, StatusPill } from "./PortalShell";
 
 const Card = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => <section className={`rounded-2xl border border-line bg-white p-5 shadow-[0_2px_10px_rgb(0_20_47/0.04)] ${className}`}>{children}</section>;
-const Heading = ({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) => <div><p className="eyebrow text-accent">{eyebrow}</p><h1 className="mt-2 text-3xl font-medium tracking-[-0.04em] text-ink">{title}</h1>{description && <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{description}</p>}</div>;
+const Heading = ({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) => <div><p className="eyebrow text-accent">{eyebrow}</p><h1 className="mt-2 break-words text-3xl font-medium tracking-[-0.04em] text-ink">{title}</h1>{description && <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{description}</p>}</div>;
 
 export function ClientPortalView({ page = "overview" }: { page?: "overview" | "services" | "requests" | "documents" | "billing" }) {
   return <PortalShell mode="client"><Heading eyebrow="Client portal" title={page === "overview" ? "Your project" : page === "services" ? "My service" : page === "requests" ? "Requests" : page === "billing" ? "Billing" : "Documents"} description={page === "overview" ? "A clear view of the project Blackroid is handling for your organisation." : undefined} />{page === "overview" ? <ClientOverview /> : page === "services" ? <ClientServices /> : page === "requests" ? <ClientRequests /> : page === "billing" ? <ClientBilling /> : <ClientDocuments />}</PortalShell>;
