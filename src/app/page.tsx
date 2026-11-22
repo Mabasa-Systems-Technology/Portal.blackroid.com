@@ -1,5 +1,5 @@
-import { ClientPortfolio } from "@/components/ClientPortfolio";
+import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  return <ClientPortfolio />;
+  redirect("/login");
 }
