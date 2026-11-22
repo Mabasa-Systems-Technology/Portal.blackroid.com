@@ -141,3 +141,19 @@ public unless your host enforces access restrictions.
 
 Before deploying dependency updates, run `npm ci`, `npm run lint`,
 `npm run typecheck`, and `npm run build`.
+
+## Blackroid operations foundation
+
+The operational foundation is available at `/login`, `/portal`, and `/admin`.
+The current screens are intentionally safe previews backed by typed local data:
+they make the navigation, organisation boundaries, work queue, requests,
+documents, deliverables, and review concepts concrete before a Supabase project
+is connected. The Supabase migration is in
+`supabase/migrations/202611220001_blackroid_portal_foundation.sql` and has not
+been applied to any database.
+
+Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` when
+the Supabase project is provisioned. Keep `SUPABASE_SERVICE_ROLE_KEY` server
+side only. The portal must not be treated as production-ready until Auth,
+RLS, private Storage policies, invitations, and persistent workflows have been
+connected and tested.

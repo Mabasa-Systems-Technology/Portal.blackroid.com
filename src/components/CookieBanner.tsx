@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
@@ -39,6 +40,8 @@ let hiddenThisVisit = false;
  * optional scripts only when `localStorage.getItem("blackroid-cookie-consent") === "accepted"`.
  */
 export function CookieBanner() {
+  const pathname = usePathname();
+  if (pathname === "/login" || pathname === "/portal" || pathname.startsWith("/portal/") || pathname === "/admin" || pathname.startsWith("/admin/")) return null;
   // "pending" on the server and during hydration, so nothing flashes before the saved choice is known.
   const choice = useSyncExternalStore(subscribe, read, () => "pending");
 

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Logo } from "./ui/Logo";
@@ -5,12 +7,15 @@ import { BbbeeBadge } from "./ui/BbbeeBadge";
 import { SocialLinks } from "./SocialLinks";
 import { navigation, site } from "@/lib/site";
 import { services } from "@/lib/services";
+import { usePathname } from "next/navigation";
 import wordmark from "../../public/brand/wordmark-light.png";
 
 const link = "text-[0.9375rem] leading-snug text-white/70 transition-colors hover:text-white focus-visible:text-white";
 const heading = "mb-5 text-sm font-medium text-white";
 
 export function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/login" || pathname === "/portal" || pathname.startsWith("/portal/") || pathname === "/admin" || pathname.startsWith("/admin/")) return null;
   const year = new Date().getFullYear();
   return (
     <footer className="overflow-hidden bg-navy-950 text-white">

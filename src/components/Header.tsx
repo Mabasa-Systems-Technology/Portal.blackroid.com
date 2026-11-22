@@ -35,6 +35,7 @@ function isActive(pathname: string, href: string) {
 
 export function Header() {
   const pathname = usePathname();
+  if (pathname === "/login" || pathname === "/portal" || pathname.startsWith("/portal/") || pathname === "/admin" || pathname.startsWith("/admin/")) return null;
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const lastY = useRef(0);
