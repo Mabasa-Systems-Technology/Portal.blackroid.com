@@ -7,7 +7,7 @@ export default function LoginPage() {
     <main className="min-h-screen bg-paper px-4 py-4 sm:px-6 lg:p-8">
       <div className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-[1480px] overflow-hidden rounded-2xl border border-line bg-white shadow-[0_24px_80px_rgb(0_20_47/0.12)] lg:min-h-[calc(100vh-4rem)] lg:grid-cols-[1.05fr_0.95fr]">
         <div className="relative min-h-[22rem] overflow-hidden bg-navy-950 lg:min-h-0">
-          <Image src="/login/blackroid-workspace.png" alt="Blackroid team member working with a laptop" fill priority sizes="(max-width: 1023px) 100vw, 52vw" className="object-cover object-center" />
+          <Image src="/login/blackroid-workspace.png" alt="Blackroid team member working with a laptop" fill priority unoptimized sizes="(max-width: 1023px) 100vw, 52vw" className="object-cover object-center" />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent" />
           <div className="absolute inset-x-6 bottom-7 text-white sm:inset-x-10 sm:bottom-10 lg:inset-x-14 lg:bottom-14">
             <p className="eyebrow text-white/70">Blackroid operations</p>
