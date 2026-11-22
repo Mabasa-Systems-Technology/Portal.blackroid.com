@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, LockKeyhole } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import wordmarkDark from "../../../public/brand/wordmark-dark.png";
 
 export default function LoginPage() {
   return (
     <main className="min-h-screen bg-paper px-4 py-4 sm:px-6 lg:p-8">
       <div className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-[1480px] overflow-hidden rounded-2xl border border-line bg-white shadow-[0_24px_80px_rgb(0_20_47/0.12)] lg:min-h-[calc(100vh-4rem)] lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="relative min-h-[12rem] overflow-hidden bg-navy-950 sm:min-h-[18rem] lg:min-h-0">
-          <Image src="/login/blackroid-workspace.png" alt="Blackroid team member working with a laptop" fill priority unoptimized sizes="(max-width: 1023px) 100vw, 52vw" className="object-cover object-[center_30%]" />
+        <div className="relative hidden min-h-[12rem] overflow-hidden bg-navy-950 bg-[url('/login/blackroid-workspace.png')] bg-cover bg-[center_30%] sm:min-h-[18rem] lg:block lg:min-h-0">
           <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent" />
           <div className="absolute inset-x-6 bottom-7 hidden text-white lg:inset-x-14 lg:bottom-14 lg:block">
             <p className="eyebrow text-white/70">Blackroid operations</p>
@@ -17,9 +17,8 @@ export default function LoginPage() {
         </div>
         <div className="flex items-center justify-center px-5 py-8 sm:px-12 sm:py-10 lg:px-16 xl:px-24">
           <div className="w-full max-w-md">
-            <Link href="/" className="text-lg font-semibold tracking-[-0.04em] text-accent">BLACKROID<span className="text-ink">.</span></Link>
-            <div className="mt-8 flex size-10 items-center justify-center rounded bg-accent-wash text-accent sm:mt-12 sm:size-11"><LockKeyhole className="size-5" /></div>
-            <h1 className="mt-5 text-2xl font-medium tracking-[-0.04em] sm:mt-6 sm:text-3xl">Sign in to your workspace</h1>
+            <Link href="/" aria-label="Blackroid home" className="inline-flex"><Image src={wordmarkDark} alt="Blackroid" priority className="h-8 w-auto" /></Link>
+            <h1 className="mt-10 text-2xl font-medium tracking-[-0.04em] sm:mt-12 sm:text-3xl">Sign in to your workspace</h1>
             <p className="mt-2 text-sm leading-6 text-muted">Use your work email to continue.</p>
             <form className="mt-6 space-y-4 sm:mt-8">
               <label className="block text-sm font-medium">Work email<input type="email" required placeholder="you@company.co.za" className="mt-2 w-full rounded border border-line px-3 py-3 text-sm" /></label>
