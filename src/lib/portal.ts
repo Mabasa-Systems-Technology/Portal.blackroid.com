@@ -8,6 +8,7 @@ export const portalNavigation = [
   { label: "My services", href: "/portal/services" },
   { label: "Requests", href: "/portal/requests" },
   { label: "Documents", href: "/portal/documents" },
+  { label: "Billing", href: "/portal/billing" },
 ] as const;
 
 export const adminNavigation = [

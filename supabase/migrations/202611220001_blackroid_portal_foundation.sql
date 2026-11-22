@@ -51,6 +51,11 @@ create table if not exists public.notifications (
 create table if not exists public.audit_logs (
   id uuid primary key default gen_random_uuid(), actor_id uuid references public.profiles(id), organisation_id uuid references public.organisations(id), action text not null, entity_type text not null, entity_id uuid, metadata jsonb not null default '{}'::jsonb, created_at timestamptz not null default now()
 );
+create table if not exists public.portal_invitations (
+  id uuid primary key default gen_random_uuid(), organisation_id uuid not null references public.organisations(id) on delete cascade,
+  email text not null, role public.client_role not null default 'client_member', invited_by uuid not null references public.profiles(id),
+  auth_user_id uuid references public.profiles(id), temporary_password_set_at timestamptz, expires_at timestamptz not null default (now() + interval '48 hours'), accepted_at timestamptz, created_at timestamptz not null default now()
+);
 
 alter table public.organisations enable row level security;
 alter table public.profiles enable row level security;
@@ -65,6 +70,7 @@ alter table public.approvals enable row level security;
 alter table public.invoices enable row level security;
 alter table public.notifications enable row level security;
 alter table public.audit_logs enable row level security;
+alter table public.portal_invitations enable row level security;
 
 create or replace function public.is_internal_staff() returns boolean language sql stable security definer set search_path = public as $$ select exists (select 1 from public.internal_staff where user_id = auth.uid() and active); $$;
 create or replace function public.is_org_member(target_org uuid) returns boolean language sql stable security definer set search_path = public as $$ select exists (select 1 from public.organisation_members where organisation_id = target_org and user_id = auth.uid()); $$;
@@ -79,3 +85,4 @@ create policy "members can view published deliverables" on public.deliverables f
 create policy "staff can manage deliverables" on public.deliverables for all using (public.is_internal_staff()) with check (public.is_internal_staff());
 create policy "members can view their requests" on public.information_requests for select using (public.is_internal_staff() or public.is_org_member(organisation_id));
 create policy "staff can manage requests" on public.information_requests for all using (public.is_internal_staff()) with check (public.is_internal_staff());
+create policy "staff can manage portal invitations" on public.portal_invitations for all using (public.is_internal_staff()) with check (public.is_internal_staff());
